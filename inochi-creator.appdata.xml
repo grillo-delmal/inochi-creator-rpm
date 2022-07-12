@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>inochi-creator</id>
+  <launchable type="desktop-id">inochi-creator.desktop</launchable>
+  <name>Inochi Creator</name>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>BSD-2-Clause</project_license>
+  <summary>Tool to create and edit Inochi2D puppets.</summary>
+  <description>
+    <p>
+      Inochi2D is a framework for realtime 2D puppet animation which can be used for VTubing, 
+      game development and digital animation. 
+      Inochi Creator is a tool that lets you create and edit Inochi2D puppets.
+    </p>
+  </description>
+  <url type="homepage">https://github.com/Inochi2D/inochi-creator</url>
+  <url type="help">https://github.com/Inochi2D/inochi-creator</url>
+  <url type="bugtracker">https://github.com/Inochi2D/inochi-creator/issues</url>
+  <screenshots>
+    <screenshot type="default">
+      <caption>Title screen</caption>
+      <image>https://user-images.githubusercontent.com/7032834/147977672-7fb4bfc3-edf6-4e01-8e92-210b16af485a.png</image>
+    </screenshot>
+  </screenshots>
+  <categories>
+    <category>Graphics</category>
+  </categories>
+</component>

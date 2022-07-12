@@ -1,0 +1,30 @@
+#!/bin/sh
+
+set -e
+set -x
+
+TAGVER="$(sed -n 's/%define inochi_creator_ver\s*//p' *.spec)"
+DIST="$(sed -n 's/%define inochi_creator_dist\s*//p' *.spec)"
+COMMIT="$(sed -n 's/%define inochi_creator_commit\s*//p' *.spec)"
+SHORT="$(sed -n 's/%define inochi_creator_short\s*//p' *.spec)"
+VERSION=${TAGVER}$([ ${DIST} -gt 0 ] && echo "^${DIST}.git${SHORT}" || echo "")
+
+# Retrieve and set version
+curl -L https://github.com/Inochi2D/inochi-creator/archive/${COMMIT}/inochi-creator-${SHORT}.tar.gz --output inochi-creator-${SHORT}.tar.gz
+tar -xzf inochi-creator-${SHORT}.tar.gz
+
+pushd inochi-creator-${COMMIT}
+
+# Remove restricted assets
+rm res/logo.png
+rm res/logo_256.png
+rm -rf res/ui/
+rm res/inochi-creator.ico
+rm res/inochi-creator.rc
+
+popd
+
+tar -czf inochi-creator-$VERSION-norestricted.tar.gz inochi-creator-${COMMIT}
+rm -rf inochi-creator-${COMMIT}
+rm -rf inochi-creator-${SHORT}.tar.gz
+
