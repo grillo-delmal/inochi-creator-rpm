@@ -5,9 +5,9 @@
 %define inochi_creator_short b6d0ab3
 
 # Project maintained deps
-%define bindbc_imgui_semver 0.7.0+build.9.g75219e1
-%define bindbc_imgui_commit 75219e193e6a5be51308827dd7a78b332cae047e
-%define bindbc_imgui_short 75219e1
+%define bindbc_imgui_semver 0.7.0+build.16.g502f1a8
+%define bindbc_imgui_commit 502f1a86f9d41a74e347145356cd35891e0ea399
+%define bindbc_imgui_short 502f1a8
 
 %define facetrack_d_semver 0.6.2+build.22.ga46f416
 %define facetrack_d_commit a46f416e8781cb24a0272e95e4e2e9e7b3dd332d
@@ -46,7 +46,7 @@
 %define bindbc_opengl_ver 1.0.2
 %define bindbc_sdl_ver 1.1.3
 %define imagefmt_ver 2.1.2
-%define mir_algorithm_ver 3.14.1
+%define mir_algorithm_ver 3.14.10
 %define mir_core_ver 1.1.109
 %define semver_ver 0.3.4
 %define silly_ver 1.1.1
@@ -216,20 +216,31 @@ tar -xzf %{SOURCE23}
 rm -r deps/bindbc-imgui/deps/cimgui/imgui
 mv imgui-%{imgui_commit} deps/bindbc-imgui/deps/cimgui/imgui
 
-
-%build
+# FIX: Inochi creator version dependent on git
 cat > source/creator/ver.d <<EOF
 module creator.ver;
 
 enum INC_VERSION = "%{inochi_creator_semver}";
 EOF
 
+# FIX: Inochi2D version dependent on git
 cat > deps/inochi2d/source/inochi2d/ver.d <<EOF
 module inochi2d.ver;
 
 enum IN_VERSION = "%{inochi2d_semver}";
 EOF
 
+# FIX: make bindbc-imgui submodule checking only check cimgui
+rm deps/bindbc-imgui/.gitmodules
+cat > deps/bindbc-imgui/.gitmodules <<EOF
+[submodule "deps/cimgui"]
+	path = deps/cimgui
+	url = https://github.com/Inochi2D/cimgui.git
+EOF
+mkdir deps/bindbc-imgui/deps/cimgui/.git
+
+
+%build
 export DFLAGS='-link-defaultlib-shared=true'
 dub build --skip-registry=all --compiler=ldc2
 

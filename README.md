@@ -7,7 +7,7 @@ Packages generated using this files and scripts are not supported by the upstrea
 
 If you want to use this software on Fedora, you can use the COPR version from the following link
 
-https://copr.fedorainfracloud.org/coprs/grillo-delmal/inochi-creator/
+https://copr.fedorainfracloud.org/coprs/grillo-delmal/inochi2d/
 
 ## Building
 
