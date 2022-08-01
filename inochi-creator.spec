@@ -5,48 +5,48 @@
 %define inochi_creator_short b6d0ab3
 
 # Project maintained deps
-%define bindbc_imgui_semver 0.7.0+build.16.g502f1a8
-%define bindbc_imgui_commit 502f1a86f9d41a74e347145356cd35891e0ea399
-%define bindbc_imgui_short 502f1a8
+%define bindbc_imgui_semver 0.7.0+build.20.g237a209
+%define bindbc_imgui_commit 237a209b0b35ec4766f4263b4d599fac59bd4dc1
+%define bindbc_imgui_short 237a209
 
-%define facetrack_d_semver 0.6.2+build.22.ga46f416
-%define facetrack_d_commit a46f416e8781cb24a0272e95e4e2e9e7b3dd332d
-%define facetrack_d_short a46f416
+%define facetrack_d_semver 0.6.2+build.32.g9e1b2b1
+%define facetrack_d_commit 9e1b2b1d8f968828c6bfd545287ad60fd48ab97c
+%define facetrack_d_short 9e1b2b1
 
 %define fghj_semver 1.0.0
 %define fghj_commit 7d8b68001ebef41c78709e8dfa78fbf24e75bffd
 %define fghj_short 7d8b680
 
-%define gitver_semver 1.0.0+build.1.g8964a4a
-%define gitver_commit 8964a4a3cd21c6efae450833446e2a20ab538f64
-%define gitver_short 8964a4a
+%define gitver_semver 1.5.0
+%define gitver_commit 8616ef003a324fb5067a5e5f9da665898f4fe922
+%define gitver_short 8616ef0
 
 %define i18n_d_semver 1.0.1+build.1.ge4a7f0b
 %define i18n_d_commit e4a7f0bdee45b02cd5dba622046681a4cde20199
 %define i18n_d_short e4a7f0b
 
-%define inmath_semver 1.0.3
-%define inmath_commit 66ce978344573491c3a9eeae41848897c5e50a03
-%define inmath_short 66ce978
+%define inmath_semver 1.0.3+build.4.gec62993
+%define inmath_commit ec629939647eac2d6e44003adee35fbaddba78e8
+%define inmath_short ec62993
 
-%define inochi2d_semver 0.7.2
-%define inochi2d_commit 6114bd16b1bcefa8a094b3519d5d4d445895509d
-%define inochi2d_short 6114bd1
+%define inochi2d_semver 0.7.2+build.17.g0e32b36
+%define inochi2d_commit 0e32b364f07e704641033ef9243a9520825d42d0
+%define inochi2d_short 0e32b36
 
 %define psd_d_semver 0.6.2
 %define psd_d_commit f12e0ad4bc54381a4a80fd5ec6249cdd91d0e990
 %define psd_d_short f12e0ad
 
-%define vmc_d_semver 1.1.1
-%define vmc_d_commit 250914812579b1429a967ec993bc5d250d53d69f
-%define vmc_d_short 2509148
+%define vmc_d_semver 1.1.1+build.4.gb32fb96
+%define vmc_d_commit b32fb96b4ce9a6357b193fb297e44edd8e6112ed
+%define vmc_d_short b32fb96
 
 # Indirect deps
 %define bindbc_loader_ver 1.0.1
 %define bindbc_opengl_ver 1.0.2
 %define bindbc_sdl_ver 1.1.3
 %define imagefmt_ver 2.1.2
-%define mir_algorithm_ver 3.14.10
+%define mir_algorithm_ver 3.14.11
 %define mir_core_ver 1.1.109
 %define semver_ver 0.3.4
 %define silly_ver 1.1.1
@@ -149,8 +149,8 @@ mv gitver-%{gitver_commit} deps/gitver
 dub add-local deps/gitver/ "%{gitver_semver}"
 
 tar -xzf %{SOURCE8}
-mv i18n-%{i18n_d_commit} deps/i18n-d
-dub add-local deps/i18n-d/ "%{i18n_d_semver}"
+mv i18n-%{i18n_d_commit} deps/i18n
+dub add-local deps/i18n/ "%{i18n_d_semver}"
 
 tar -xzf %{SOURCE9}
 mv inmath-%{inmath_commit} deps/inmath
@@ -241,8 +241,8 @@ mkdir deps/bindbc-imgui/deps/cimgui/.git
 
 
 %build
-export DFLAGS='-link-defaultlib-shared=true'
-dub build --skip-registry=all --compiler=ldc2
+export DFLAGS="%{_d_optflags}"
+dub build --config=barebones --skip-registry=all --compiler=ldc2
 
 
 %install
