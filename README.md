@@ -31,3 +31,11 @@ spectool -g inochi-creator.spec
 ```sh
 fedpkg --release f36 --name inochi-creator mockbuild
 ```
+
+## About the icon
+
+The included icon is Copyright (c) 2022 [Grillo del Mal](https://twitter.com/grillo_delmal), [Anasu](https://twitter.com/ooanasuoo).
+
+It is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/). 
+
+![license](https://i.creativecommons.org/l/by-sa/4.0/88x31.png "Creative Commons Attribution-ShareAlike 4.0 International License")

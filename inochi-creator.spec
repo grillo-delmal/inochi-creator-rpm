@@ -104,6 +104,11 @@ Source21:       https://github.com/dayllenger/tinyfiledialogs-d/archive/refs/tag
 Source22:       https://github.com/Inochi2D/cimgui/archive/%{cimgui_commit}/cimgui-%{cimgui_short}.tar.gz
 Source23:       https://github.com/Inochi2D/imgui/archive/%{imgui_commit}/imgui-%{imgui_short}.tar.gz
 
+Source24:       icon.png
+
+Patch0:         inochi-creator_0.7.3_icon-fix.patch
+
+
 # dlang
 BuildRequires:  ldc
 BuildRequires:  dub
@@ -119,6 +124,7 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib
 BuildRequires:  git
 
+Requires:       hicolor-icon-theme
 Requires:       xprop
 
 %description
@@ -128,6 +134,7 @@ Inochi Creator is a tool that lets you create and edit Inochi2D puppets.
 
 %prep
 %setup -n %{name}-%{inochi_creator_commit}
+%patch0 -p1 -b .icon-fix
 
 mkdir deps
 
@@ -249,6 +256,9 @@ dub build --config=barebones --skip-registry=all --compiler=ldc2
 install -d ${RPM_BUILD_ROOT}%{_bindir}
 install -p ./out/inochi-creator ${RPM_BUILD_ROOT}%{_bindir}/inochi-creator
 
+install -d $RPM_BUILD_ROOT/%{_datadir}/icons/hicolor/256x256/apps/
+install -p -m 644 %{SOURCE24} $RPM_BUILD_ROOT/%{_datadir}/icons/hicolor/256x256/apps/inochi-creator.png
+
 install -d ${RPM_BUILD_ROOT}%{_datadir}/applications/
 install -p -m 644 res/inochi-creator.desktop ${RPM_BUILD_ROOT}%{_datadir}/applications/inochi-creator.desktop
 desktop-file-validate \
@@ -285,6 +295,7 @@ find ./res/ -mindepth 1 -maxdepth 1 -iname '*LICENSE*' -exec \
 %{_bindir}/inochi-creator
 %{_metainfodir}/inochi-creator.appdata.xml
 %{_datadir}/applications/inochi-creator.desktop
+%{_datadir}/icons/hicolor/256x256/apps/inochi-creator.png
 
 
 %changelog
