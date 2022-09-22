@@ -9,6 +9,11 @@ If you want to use this software on Fedora, you can use the COPR version from th
 
 https://copr.fedorainfracloud.org/coprs/grillo-delmal/inochi2d/
 
+If you have a problem or need help with builds provided in COPR, please open an 
+issue here and I'll see how to help out, either by providing a fix or by checking
+on a supported version if it's a problem that's also present on the upstream 
+Inochi2D project.
+
 ## Building
 
 If you want to build the RPM locally on Fedora you need the following tools
@@ -39,3 +44,5 @@ The included icon is Copyright (c) 2022 [Grillo del Mal](https://twitter.com/gri
 It is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/). 
 
 ![license](https://i.creativecommons.org/l/by-sa/4.0/88x31.png "Creative Commons Attribution-ShareAlike 4.0 International License")
+
+For more information check their source at https://github.com/grillo-delmal/vpuppet-icons

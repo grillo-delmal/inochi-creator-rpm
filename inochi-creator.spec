@@ -70,7 +70,7 @@ Summary:        Tool to create and edit Inochi2D puppets
 
 License:        BSD2 and MIT
 
-URL:            https://github.com/Inochi2D/inochi-creator
+URL:            https://github.com/grillo-delmal/inochi-creator-rpm
 
 #https://github.com/Inochi2D/inochi-creator/archive/{inochi_creator_commit}/{name}-{inochi_creator_short}.tar.gz
 Source0:        %{name}-%{version}-norestricted.tar.gz
@@ -131,6 +131,7 @@ Requires:       xprop
 Inochi2D is a framework for realtime 2D puppet animation which can be used for VTubing, 
 game development and digital animation. 
 Inochi Creator is a tool that lets you create and edit Inochi2D puppets.
+This is an unbranded build, unsupported by the official project.
 
 %prep
 %setup -n %{name}-%{inochi_creator_commit}

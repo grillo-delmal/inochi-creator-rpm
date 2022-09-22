@@ -13,13 +13,16 @@
     </p>
     <p>
       Inochi Creator is a tool that lets you create and edit Inochi2D puppets.
-      This is a barebones compilation of the project without the branding assets, 
-      which is not directly supported by the original project.
+    </p>
+    <p>
+      This build of the project doesn't include the original branding assets 
+      and it's not supported by the original project authors. 
+      If you have any issue, contact the package maintainer. 
     </p>
   </description>
-  <url type="homepage">https://github.com/Inochi2D/inochi-creator</url>
-  <url type="help">https://github.com/Inochi2D/inochi-creator</url>
-  <url type="bugtracker">https://github.com/Inochi2D/inochi-creator/issues</url>
+  <url type="homepage">https://copr.fedorainfracloud.org/coprs/grillo-delmal/inochi2d/</url>
+  <url type="help">https://github.com/grillo-delmal/inochi-creator-rpm</url>
+  <url type="bugtracker">https://github.com/grillo-delmal/inochi-creator-rpm/issues</url>
   <screenshots>
     <screenshot type="default">
       <caption>Title screen</caption>
