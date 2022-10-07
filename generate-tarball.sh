@@ -15,12 +15,17 @@ tar -xzf inochi-creator-${SHORT}.tar.gz
 
 pushd inochi-creator-${COMMIT}
 
-# Remove restricted assets
+# Remove branding assets
+rm -rf res/Inochi-Creator.iconset/
+find res/ui/ -type f -not -name "grid.png" -delete
+rm res/icon.png
+rm res/Info.plist
 rm res/logo.png
 rm res/logo_256.png
-rm -rf res/ui/
 rm res/inochi-creator.ico
 rm res/inochi-creator.rc
+rm res/shaders/ada.frag
+rm res/shaders/ada.vert
 
 popd
 
