@@ -1,8 +1,8 @@
-%define inochi_creator_ver 0.7.4
-%define inochi_creator_semver 0.7.4
+%define inochi_creator_ver 0.7.4.1
+%define inochi_creator_semver 0.7.4.1
 %define inochi_creator_dist 0
-%define inochi_creator_commit a7e87fd2c4ba0da58a07ba07199e3799553318e0
-%define inochi_creator_short a7e87fd
+%define inochi_creator_commit f1bfc20122d1f912f400d0838c529e220718bfb2
+%define inochi_creator_short f1bfc20
 
 # Project maintained deps
 %define bindbc_imgui_semver 0.7.0+build.22.gb3d6e32
