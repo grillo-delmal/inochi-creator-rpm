@@ -1,8 +1,8 @@
-%define inochi_creator_ver 0.7.3
-%define inochi_creator_semver 0.7.3+build.266.gf33c0d3
-%define inochi_creator_dist 266
-%define inochi_creator_commit f33c0d3c71c9faad27f7eb5e61da60d059f58034
-%define inochi_creator_short f33c0d3
+%define inochi_creator_ver 0.7.4
+%define inochi_creator_semver 0.7.4
+%define inochi_creator_dist 0
+%define inochi_creator_commit a7e87fd2c4ba0da58a07ba07199e3799553318e0
+%define inochi_creator_short a7e87fd
 
 # Project maintained deps
 %define bindbc_imgui_semver 0.7.0+build.22.gb3d6e32
@@ -21,10 +21,6 @@
 %define fghj_commit 2df8f8af58421da760190e3f8ddf1dcee546c796
 %define fghj_short 2df8f8a
 
-%define gitver_semver 1.6.0
-%define gitver_commit 763a803936f6588d398f9eadc4965980b7903f4d
-%define gitver_short 763a803
-
 %define i18n_d_semver 1.0.1+build.2.g75c57ea
 %define i18n_d_commit 75c57ea0889d459b73765d932aec02f9b3e71b80
 %define i18n_d_short 75c57ea
@@ -33,9 +29,9 @@
 %define inmath_commit ec629939647eac2d6e44003adee35fbaddba78e8
 %define inmath_short ec62993
 
-%define inochi2d_semver 0.7.2+build.61.gcf844f2
-%define inochi2d_commit cf844f2a0e5d33b282d6146fadd71b41c0468bcb
-%define inochi2d_short cf844f2
+%define inochi2d_semver 0.7.2+build.62.g08fe198
+%define inochi2d_commit 08fe19825b0db01c0a7831711722e5c9660d74ad
+%define inochi2d_short 08fe198
 
 %define psd_d_semver 0.6.2
 %define psd_d_commit f12e0ad4bc54381a4a80fd5ec6249cdd91d0e990
