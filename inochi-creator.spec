@@ -69,7 +69,7 @@ Version:        %{inochi_creator_ver}%{?inochi_creator_suffix:}
 Release:        %autorelease
 Summary:        Tool to create and edit Inochi2D puppets
 
-License:        BSD2 and MIT
+License:        BSD-2-Clause and MIT
 
 URL:            https://github.com/grillo-delmal/inochi-creator-rpm
 
@@ -91,7 +91,7 @@ Source11:       https://github.com/KitsunebiGames/i18n/archive/%{i18n_d_commit}/
 Source12:       https://github.com/Inochi2D/inmath/archive/%{inmath_commit}/inmath-%{inmath_short}.tar.gz
 Source13:       https://github.com/Inochi2D/inochi2d/archive/%{inochi2d_commit}/inochi2d-%{inochi2d_short}.tar.gz
 Source14:       https://github.com/Inochi2D/psd-d/archive/%{psd_d_commit}/psd-d-%{psd_d_short}.tar.gz
-Source15:       https://github.com/Inochi2D/vmc-d/archive/%{vmc_d_commit}/vmc-%{vmc_d_short}.tar.gz
+Source15:       https://github.com/Inochi2D/vmc-d/archive/%{vmc_d_commit}/vmc-d-%{vmc_d_short}.tar.gz
 
 # Indirect deps
 Source16:       https://github.com/BindBC/bindbc-loader/archive/refs/tags/v%{bindbc_loader_ver}/bindbc-loader-%{bindbc_loader_ver}.tar.gz
@@ -141,7 +141,21 @@ This is an unbranded build, unsupported by the official project.
 
 %prep
 %setup -n %{name}-%{inochi_creator_commit}
+
 %patch0 -p1 -b .icon-fix
+%patch1 -p1 -b .no-gitver-a
+
+# FIX: Inochi creator version dependent on git
+cat > source/creator/ver.d <<EOF
+module creator.ver;
+
+enum INC_VERSION = "%{inochi_creator_semver}";
+EOF
+
+# FIX: Replace config.d and banner.png
+rm source/creator/config.d
+cp %{SOURCE3} source/creator/
+cp %{SOURCE4} res/ui/banner.png
 
 mkdir deps
 
@@ -162,6 +176,12 @@ tar -xzf %{SOURCE10}
 mv fghj-%{fghj_commit} deps/fghj
 dub add-local deps/fghj/ "%{fghj_semver}"
 
+pushd deps; pushd fghj
+
+mv LICENSE.md LICENSE
+
+popd; popd
+
 tar -xzf %{SOURCE11}
 mv i18n-%{i18n_d_commit} deps/i18n
 dub add-local deps/i18n/ "%{i18n_d_semver}"
@@ -173,6 +193,19 @@ dub add-local deps/inmath/ "%{inmath_semver}"
 tar -xzf %{SOURCE13}
 mv inochi2d-%{inochi2d_commit} deps/inochi2d
 dub add-local deps/inochi2d/ "%{inochi2d_semver}"
+
+pushd deps; pushd inochi2d
+
+%patch2 -p1 -b .inochi2d-no-gitver
+
+# FIX: Inochi2D version dependent on git
+cat > source/inochi2d/ver.d <<EOF
+module inochi2d.ver;
+
+enum IN_VERSION = "%{inochi2d_semver}";
+EOF
+
+popd; popd
 
 tar -xzf %{SOURCE14}
 mv psd-d-%{psd_d_commit} deps/psd-d
@@ -234,37 +267,24 @@ tar -xzf %{SOURCE27}
 rm -r deps/bindbc-imgui/deps/cimgui/imgui
 mv imgui-%{imgui_commit} deps/bindbc-imgui/deps/cimgui/imgui
 
-# FIX: Inochi creator version dependent on git
-%patch1 -p1 -b .no-gitver-a
-cat > source/creator/ver.d <<EOF
-module creator.ver;
+pushd deps; pushd bindbc-imgui
 
-enum INC_VERSION = "%{inochi_creator_semver}";
-EOF
-
-# FIX: Inochi2D version dependent on git
-pushd deps; pushd inochi2d
-%patch2 -p1 -b .no-gitver-b
-cat > source/inochi2d/ver.d <<EOF
-module inochi2d.ver;
-
-enum IN_VERSION = "%{inochi2d_semver}";
-EOF
-popd; popd;
+rm -rf deps/freetype
+rm -rf deps/glbinding
+rm -rf deps/glfw
+rm -rf deps/SDL
+rm -rf deps/cimgui/imgui/examples/
 
 # FIX: Make bindbc-imgui submodule checking only check cimgui
-rm deps/bindbc-imgui/.gitmodules
-cat > deps/bindbc-imgui/.gitmodules <<EOF
+rm .gitmodules
+cat > .gitmodules <<EOF
 [submodule "deps/cimgui"]
 	path = deps/cimgui
 	url = https://github.com/Inochi2D/cimgui.git
 EOF
-mkdir deps/bindbc-imgui/deps/cimgui/.git
+mkdir deps/cimgui/.git
 
-# FIX: Replace config.d and banner.png
-rm source/creator/config.d
-cp %{SOURCE3} source/creator/
-cp %{SOURCE4} res/ui/banner.png
+popd; popd
 
 # FIX: Add fake dependency
 mkdir -p deps/vibe-d
