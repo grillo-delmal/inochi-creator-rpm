@@ -9,10 +9,6 @@
 %define bindbc_imgui_commit b3d6e32cb0ce7c607a8e249a11c4a5a4ed0a19e8
 %define bindbc_imgui_short b3d6e32
 
-%define dportals_semver 0.1.0
-%define dportals_commit 52e805408bc43c2f74a480e16e17d8d58682fd1f
-%define dportals_short 52e8054
-
 %define facetrack_d_semver 0.6.2+build.57.g3dc8ed7
 %define facetrack_d_commit 3dc8ed78ca987ba69b79cba393f281796de62acf
 %define facetrack_d_short 3dc8ed7
@@ -78,40 +74,12 @@ Source0:        %{name}-%{version}-norestricted.tar.gz
 Source1:        inochi-creator.appdata.xml
 Source2:        icon.png
 Source3:        config.d
-Source4:        empty.png
+Source4:        banner.png
 Source5:        generate-tarball.sh
 Source6:        README.md
 
-# Project maintained deps
-Source7:        https://github.com/Inochi2D/bindbc-imgui/archive/%{bindbc_imgui_commit}/bindbc-imgui-%{bindbc_imgui_short}.tar.gz
-Source8:        https://github.com/Inochi2D/dportals/archive/%{dportals_commit}/dportals-%{dportals_short}.tar.gz
-Source9:        https://github.com/Inochi2D/facetrack-d/archive/%{facetrack_d_commit}/facetrack-d-%{facetrack_d_short}.tar.gz
-Source10:       https://github.com/Inochi2D/fghj/archive/%{fghj_commit}/fghj-%{fghj_short}.tar.gz
-Source11:       https://github.com/KitsunebiGames/i18n/archive/%{i18n_d_commit}/i18n-%{i18n_d_short}.tar.gz
-Source12:       https://github.com/Inochi2D/inmath/archive/%{inmath_commit}/inmath-%{inmath_short}.tar.gz
-Source13:       https://github.com/Inochi2D/inochi2d/archive/%{inochi2d_commit}/inochi2d-%{inochi2d_short}.tar.gz
-Source14:       https://github.com/Inochi2D/psd-d/archive/%{psd_d_commit}/psd-d-%{psd_d_short}.tar.gz
-Source15:       https://github.com/Inochi2D/vmc-d/archive/%{vmc_d_commit}/vmc-d-%{vmc_d_short}.tar.gz
-
-# Indirect deps
-Source16:       https://github.com/BindBC/bindbc-loader/archive/refs/tags/v%{bindbc_loader_ver}/bindbc-loader-%{bindbc_loader_ver}.tar.gz
-Source17:       https://github.com/BindBC/bindbc-opengl/archive/refs/tags/v%{bindbc_opengl_ver}/bindbc-opengl-%{bindbc_opengl_ver}.tar.gz
-Source18:       https://github.com/BindBC/bindbc-sdl/archive/refs/tags/v%{bindbc_sdl_ver}/bindbc-sdl-%{bindbc_sdl_ver}.tar.gz
-Source19:       https://github.com/trishume/ddbus/archive/refs/tags/v%{ddbus_ver}/ddbus-%{ddbus_ver}.tar.gz
-Source20:       https://github.com/nomad-software/dunit/archive/refs/tags/v%{dunit_ver}/dunit-%{dunit_ver}.tar.gz
-Source21:       https://github.com/tjhann/imagefmt/archive/refs/tags/v%{imagefmt_ver}/imagefmt-%{imagefmt_ver}.tar.gz
-Source22:       https://github.com/libmir/mir-algorithm/archive/refs/tags/v%{mir_algorithm_ver}/mir-algorithm-%{mir_algorithm_ver}.tar.gz
-Source23:       https://github.com/libmir/mir-core/archive/refs/tags/v%{mir_core_ver}/mir-core-%{mir_core_ver}.tar.gz
-Source24:       https://gitlab.com/AntonMeep/silly/-/archive/v%{silly_ver}/silly-v%{silly_ver}.tar.gz
-Source25:       https://github.com/dayllenger/tinyfiledialogs-d/archive/refs/tags/v%{tinyfiledialogs_ver}/tinyfiledialogs-d-%{tinyfiledialogs_ver}.tar.gz
-
-# cimgui
-Source26:       https://github.com/Inochi2D/cimgui/archive/%{cimgui_commit}/cimgui-%{cimgui_short}.tar.gz
-Source27:       https://github.com/Inochi2D/imgui/archive/%{imgui_commit}/imgui-%{imgui_short}.tar.gz
-
 Patch0:         inochi-creator_0.7.3_icon-fix.patch
 Patch1:         inochi-creator_0.7.3_no-gitver.patch
-Patch2:         inochi2d_0.7.2_no-gitver.patch
 
 
 # dlang
@@ -129,6 +97,18 @@ BuildRequires:  dbus-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib
 BuildRequires:  git
+
+BuildRequires:  zdub-inochi2d-static
+BuildRequires:  zdub-dportals-static
+BuildRequires:  zdub-tinyfiledialogs-static
+BuildRequires:  zdub-facetrack-d-static
+BuildRequires:  zdub-bindbc-sdl-static
+BuildRequires:  zdub-bindbc-imgui-static
+BuildRequires:  zdub-i18n-d-static
+BuildRequires:  zdub-inmath-static
+BuildRequires:  zdub-psd-d-static
+
+BuildRequires:  setgittag
 
 Requires:       hicolor-icon-theme
 
@@ -157,142 +137,19 @@ rm source/creator/config.d
 cp %{SOURCE3} source/creator/
 cp %{SOURCE4} res/ui/banner.png
 
-mkdir deps
-
-# Project maintained deps
-tar -xzf %{SOURCE7}
-mv bindbc-imgui-%{bindbc_imgui_commit} deps/bindbc-imgui
-dub add-local deps/bindbc-imgui/ "%{bindbc_imgui_semver}"
-
-tar -xzf %{SOURCE8}
-mv dportals-%{dportals_commit} deps/dportals
-dub add-local deps/dportals/ "%{dportals_semver}"
-
-tar -xzf %{SOURCE9}
-mv facetrack-d-%{facetrack_d_commit} deps/facetrack-d
-dub add-local deps/facetrack-d/ "%{facetrack_d_semver}"
-
-tar -xzf %{SOURCE10}
-mv fghj-%{fghj_commit} deps/fghj
-dub add-local deps/fghj/ "%{fghj_semver}"
-
-pushd deps; pushd fghj
-
-mv LICENSE.md LICENSE
-
-popd; popd
-
-tar -xzf %{SOURCE11}
-mv i18n-%{i18n_d_commit} deps/i18n
-dub add-local deps/i18n/ "%{i18n_d_semver}"
-
-tar -xzf %{SOURCE12}
-mv inmath-%{inmath_commit} deps/inmath
-dub add-local deps/inmath/ "%{inmath_semver}"
-
-tar -xzf %{SOURCE13}
-mv inochi2d-%{inochi2d_commit} deps/inochi2d
-dub add-local deps/inochi2d/ "%{inochi2d_semver}"
-
-pushd deps; pushd inochi2d
-
-%patch2 -p1 -b .inochi2d-no-gitver
-
-# FIX: Inochi2D version dependent on git
-cat > source/inochi2d/ver.d <<EOF
-module inochi2d.ver;
-
-enum IN_VERSION = "%{inochi2d_semver}";
-EOF
-
-popd; popd
-
-tar -xzf %{SOURCE14}
-mv psd-d-%{psd_d_commit} deps/psd-d
-dub add-local deps/psd-d/ "%{psd_d_semver}"
-
-tar -xzf %{SOURCE15}
-mv vmc-d-%{vmc_d_commit} deps/vmc-d
-dub add-local deps/vmc-d/ "%{vmc_d_semver}"
-
-# Indirect Deps
-
-tar -xzf %{SOURCE16}
-mv bindbc-loader-%{bindbc_loader_ver} deps/bindbc-loader
-dub add-local deps/bindbc-loader/ "%{bindbc_loader_ver}"
-
-tar -xzf %{SOURCE17}
-mv bindbc-opengl-%{bindbc_opengl_ver} deps/bindbc-opengl
-dub add-local deps/bindbc-opengl/ "%{bindbc_opengl_ver}"
-
-tar -xzf %{SOURCE18}
-mv bindbc-sdl-%{bindbc_sdl_ver} deps/bindbc-sdl
-dub add-local deps/bindbc-sdl/ "%{bindbc_sdl_ver}"
-
-tar -xzf %{SOURCE19}
-mv ddbus-%{ddbus_ver} deps/ddbus
-dub add-local deps/ddbus/ "%{ddbus_ver}"
-
-tar -xzf %{SOURCE20}
-mv dunit-%{dunit_ver} deps/dunit
-dub add-local deps/dunit/ "%{dunit_ver}"
-
-tar -xzf %{SOURCE21}
-mv imagefmt-%{imagefmt_ver} deps/imagefmt
-dub add-local deps/imagefmt/ "%{imagefmt_ver}"
-
-tar -xzf %{SOURCE22}
-mv mir-algorithm-%{mir_algorithm_ver} deps/mir-algorithm
-dub add-local deps/mir-algorithm/ "%{mir_algorithm_ver}"
-
-tar -xzf %{SOURCE23}
-mv mir-core-%{mir_core_ver} deps/mir-core
-dub add-local deps/mir-core/ "%{mir_core_ver}"
-
-tar -xzf %{SOURCE24}
-mv silly-v%{silly_ver} deps/silly
-dub add-local deps/silly/ "%{silly_ver}"
-
-tar -xzf %{SOURCE25}
-mv tinyfiledialogs-d-%{tinyfiledialogs_ver} deps/tinyfiledialogs
-dub add-local deps/tinyfiledialogs/ "%{tinyfiledialogs_ver}"
-
-# cimgui
-
-tar -xzf %{SOURCE26}
-rm -r deps/bindbc-imgui/deps/cimgui
-mv cimgui-%{cimgui_commit} deps/bindbc-imgui/deps/cimgui
-
-tar -xzf %{SOURCE27}
-rm -r deps/bindbc-imgui/deps/cimgui/imgui
-mv imgui-%{imgui_commit} deps/bindbc-imgui/deps/cimgui/imgui
+#HACK because dub can't actually deal with installed libraries
+mkdir -p /builddir/.dub/
+cp -r /usr/include/zdub /builddir/.dub/packages
 
 pushd deps; pushd bindbc-imgui
 
-rm -rf deps/freetype
-rm -rf deps/glbinding
-rm -rf deps/glfw
-rm -rf deps/SDL
-rm -rf deps/cimgui/imgui/examples/
-
-# FIX: Make bindbc-imgui submodule checking only check cimgui
-rm .gitmodules
-cat > .gitmodules <<EOF
-[submodule "deps/cimgui"]
-	path = deps/cimgui
-	url = https://github.com/Inochi2D/cimgui.git
+enum INC_VERSION = "%{inochi_creator_semver}";
 EOF
-mkdir deps/cimgui/.git
 
-popd; popd
-
-# FIX: Add fake dependency
-mkdir -p deps/vibe-d
-cat > deps/vibe-d/dub.sdl <<EOF
-name "vibe-d"
-subpackage "http"
-EOF
-dub add-local deps/vibe-d "0.9.5"
+# FIX: Replace config.d and banner.png
+rm source/creator/config.d
+cp %{SOURCE3} source/creator/
+cp %{SOURCE4} res/ui/banner.png
 
 
 %build
@@ -321,29 +178,9 @@ appstream-util validate-relax --nonet \
 install -d $RPM_BUILD_ROOT/%{_datadir}/icons/hicolor/256x256/apps/
 install -p -m 644 %{SOURCE2} $RPM_BUILD_ROOT/%{_datadir}/icons/hicolor/256x256/apps/inochi-creator.png
 
-# Dependency licenses
-install -d ${RPM_BUILD_ROOT}%{_datadir}/licenses/%{name}/./deps/bindbc-imgui/cimgui/
-install -p -m 644 ./deps/bindbc-imgui/deps/cimgui/LICENSE \
-    ${RPM_BUILD_ROOT}%{_datadir}/licenses/%{name}/./deps/bindbc-imgui/cimgui/LICENSE
-install -d ${RPM_BUILD_ROOT}%{_datadir}/licenses/%{name}/./deps/bindbc-imgui/imgui/
-install -p -m 644 ./deps/bindbc-imgui/deps/cimgui/imgui/LICENSE.txt \
-    ${RPM_BUILD_ROOT}%{_datadir}/licenses/%{name}/./deps/bindbc-imgui/imgui/LICENSE.txt
-
-install -d ${RPM_BUILD_ROOT}%{_datadir}/licenses/%{name}/deps/
-find ./deps/ -mindepth 1 -maxdepth 1 -exec \
-    install -d ${RPM_BUILD_ROOT}%{_datadir}/licenses/%{name}/{} ';'
-
-find ./deps/ -mindepth 2 -maxdepth 2 -iname '*LICENSE*' -exec \
-    install -p -m 644 "{}" "${RPM_BUILD_ROOT}%{_datadir}/licenses/%{name}/{}" ';'
-
-install -d ${RPM_BUILD_ROOT}%{_datadir}/licenses/%{name}/res/
-find ./res/ -mindepth 1 -maxdepth 1 -iname '*LICENSE*' -exec \
-    install -p -m 644 {} ${RPM_BUILD_ROOT}%{_datadir}/licenses/%{name}/{} ';'
-
 
 %files
 %license LICENSE
-%{_datadir}/licenses/%{name}/*
 %{_bindir}/inochi-creator
 %{_metainfodir}/inochi-creator.appdata.xml
 %{_datadir}/applications/inochi-creator.desktop
