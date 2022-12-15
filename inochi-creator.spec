@@ -56,8 +56,6 @@ BuildRequires:  zdub-i18n-d-static
 BuildRequires:  zdub-inmath-static
 BuildRequires:  zdub-psd-d-static
 
-BuildRequires:  setgittag
-
 Requires:       hicolor-icon-theme
 
 
