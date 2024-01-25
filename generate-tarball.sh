@@ -19,11 +19,8 @@ pushd inochi-creator-${COMMIT}
 rm -rf res/Inochi-Creator.iconset/
 find res/ui/ -type f -not -name "grid.png" -delete
 rm res/icon.png
-rm res/Info.plist
 rm res/logo.png
 rm res/logo_256.png
-rm res/inochi-creator.ico
-rm res/inochi-creator.rc
 rm res/shaders/ada.frag
 rm res/shaders/ada.vert
 
