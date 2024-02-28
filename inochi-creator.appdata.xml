@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-  <id>inochi-creator</id>
-  <launchable type="desktop-id">inochi-creator.desktop</launchable>
+  <id>com.inochi2d.inochi-creator</id>
   <name>Inochi Creator</name>
+  <summary>Tool to create and edit Inochi2D puppets</summary>
+  <developer id="com.inochi2d">
+    <name>Luna Nielsen</name>
+  </developer>
+  <launchable type="desktop-id">inochi-creator.desktop</launchable>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>BSD-2-Clause</project_license>
-  <summary>Tool to create and edit Inochi2D puppets.</summary>
   <description>
     <p>
       Inochi2D is a framework for realtime 2D puppet animation which can be used for VTubing, 
@@ -20,16 +23,43 @@
       If you have any issue, contact the package maintainer. 
     </p>
   </description>
-  <url type="homepage">https://copr.fedorainfracloud.org/coprs/grillo-delmal/inochi2d/</url>
-  <url type="help">https://github.com/grillo-delmal/inochi-creator-rpm</url>
-  <url type="bugtracker">https://github.com/grillo-delmal/inochi-creator-rpm/issues</url>
   <screenshots>
     <screenshot type="default">
       <caption>Title screen</caption>
-      <image>https://user-images.githubusercontent.com/7032834/194462402-74c4a3e0-50ca-4b50-8e8d-164d97371f5a.png</image>
+      <image type="source">https://user-images.githubusercontent.com/7032834/194462402-74c4a3e0-50ca-4b50-8e8d-164d97371f5a.png</image>
     </screenshot>
   </screenshots>
+  <releases>
+    <release version="0.8.4" date="2024-02-28">
+      <url>https://github.com/Inochi2D/inochi-creator/releases/tag/v0.8.4</url>
+      <description>
+        <p>Changelog</p>
+        <ul>
+          <li>Added deformation brush (@seagetch in #328)</li>
+          <li>Added node icons to Flip Pairing window (@grillo-delmal in #326)</li>
+          <li>Added nagscreen support</li>
+          <li>Added nagscreen for demo version</li>
+          <li>Updated Inochi Creator macOS info</li>
+          <li>Updated the macOS version Inochi Creator is built on</li>
+          <li>Fixed discovery of libSDL on macOS</li>
+          <li>Fixed paste behaviour for keypoints (@seagetch in #322)</li>
+          <li>Fixed composite node children not being shown in vertex edit mode (@seagetch in #323)</li>
+          <li>Fixed mirror deformation attempting to mirror non-drawable nodes (@grillo-delmal in #327)</li>
+          <li>Fixed github runner homebrew install breaking everything, again...</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+  <url type="homepage">https://copr.fedorainfracloud.org/coprs/grillo-delmal/inochi2d/</url>
+  <url type="bugtracker">https://github.com/grillo-delmal/inochi-creator-rpm/issues</url>
+  <url type="help">https://github.com/grillo-delmal/inochi-creator-rpm</url>
+  <url type="donation">https://inochi2d.com/#donate</url>
   <categories>
     <category>Graphics</category>
   </categories>
+  <recommends>
+    <control>pointing</control>
+    <control>keyboard</control>
+  </recommends>
+  <content_rating type="oars-1.1"/>
 </component>

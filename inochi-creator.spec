@@ -1,8 +1,8 @@
-%define inochi_creator_ver 0.8.3
-%define inochi_creator_semver 0.8.3
+%define inochi_creator_ver 0.8.4
+%define inochi_creator_semver 0.8.4
 %define inochi_creator_dist 0
-%define inochi_creator_commit 06da208b82745a5013073604ee9d9e8f1890403d
-%define inochi_creator_short 06da208
+%define inochi_creator_commit febcebc40477548baed1bbec26293380fd787f8c
+%define inochi_creator_short febcebc
 
 # Project maintained deps
 %define dportals_semver 0.1.0
@@ -21,9 +21,9 @@
 %define i18n_d_commit 75c57ea0889d459b73765d932aec02f9b3e71b80
 %define i18n_d_short 75c57ea
 
-%define i2d_imgui_semver 0.8.0+build.3.gf09d58a
-%define i2d_imgui_commit f09d58ad57f420a6d2bb487cfe85819a95ed5193
-%define i2d_imgui_short f09d58a
+%define i2d_imgui_semver 0.8.0+build.4.ge34f8ba
+%define i2d_imgui_commit e34f8ba04c0085be7ee83a8df200cf2ffb30bfd3
+%define i2d_imgui_short e34f8ba
 
 %define i2d_opengl_semver 1.0.0
 %define i2d_opengl_commit 985ab89dd82aafc7f0733e855096a38b4a612762
@@ -33,9 +33,9 @@
 %define inmath_commit 3e46a1aafd9ec11f0dea39e2ba6ebb686846baf7
 %define inmath_short 3e46a1a
 
-%define inochi2d_semver 0.8.3
-%define inochi2d_commit 3e9eab9e963ad1ab82e081821f61475fc9d3250d
-%define inochi2d_short 3e9eab9
+%define inochi2d_semver 0.8.3+build.2.g3db48df
+%define inochi2d_commit 3db48df02a332ea9d9f5c1cb3378810107bd93d0
+%define inochi2d_short 3db48df
 
 %define kra_d_semver 0.5.5+build.3.g25453ad
 %define kra_d_commit 25453ad77d4826d15f905ac7259b3188d855697f
@@ -58,7 +58,7 @@
 %define dunit_ver 1.0.16
 %define dxml_ver 0.4.4
 %define imagefmt_ver 2.1.2
-%define mir_algorithm_ver 3.21.0
+%define mir_algorithm_ver 3.22.0
 %define mir_core_ver 1.7.0
 %define mir_linux_kernel_ver 1.0.1
 %define mir_random_ver 2.2.19
