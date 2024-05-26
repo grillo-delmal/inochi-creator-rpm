@@ -1,8 +1,8 @@
-%define inochi_creator_ver 0.8.4
-%define inochi_creator_semver 0.8.4
+%define inochi_creator_ver 0.8.5
+%define inochi_creator_semver 0.8.5
 %define inochi_creator_dist 0
-%define inochi_creator_commit febcebc40477548baed1bbec26293380fd787f8c
-%define inochi_creator_short febcebc
+%define inochi_creator_commit 4d58449e6a3f7a9bf09f85b675c5e4e61f757deb
+%define inochi_creator_short 4d58449
 
 # Project maintained deps
 %define dportals_semver 0.1.0
@@ -29,13 +29,13 @@
 %define i2d_opengl_commit 985ab89dd82aafc7f0733e855096a38b4a612762
 %define i2d_opengl_short 985ab89
 
-%define inmath_semver 1.0.5+build.1.g3e46a1a
-%define inmath_commit 3e46a1aafd9ec11f0dea39e2ba6ebb686846baf7
-%define inmath_short 3e46a1a
+%define inmath_semver 1.0.6
+%define inmath_commit 6ee33a0e160bcf0c0286a16e232feeeae2306548
+%define inmath_short 6ee33a0
 
-%define inochi2d_semver 0.8.3+build.2.g3db48df
-%define inochi2d_commit 3db48df02a332ea9d9f5c1cb3378810107bd93d0
-%define inochi2d_short 3db48df
+%define inochi2d_semver 0.8.4
+%define inochi2d_commit e6049a86c5c1712e828acc293dba6f554ba0155e
+%define inochi2d_short e6049a8
 
 %define kra_d_semver 0.5.5+build.3.g25453ad
 %define kra_d_commit 25453ad77d4826d15f905ac7259b3188d855697f
@@ -58,8 +58,8 @@
 %define dunit_ver 1.0.16
 %define dxml_ver 0.4.4
 %define imagefmt_ver 2.1.2
-%define mir_algorithm_ver 3.22.0
-%define mir_core_ver 1.7.0
+%define mir_algorithm_ver 3.22.1
+%define mir_core_ver 1.7.1
 %define mir_linux_kernel_ver 1.0.1
 %define mir_random_ver 2.2.19
 %define silly_ver 1.1.1
