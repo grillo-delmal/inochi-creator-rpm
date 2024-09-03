@@ -92,10 +92,15 @@ BuildRequires:  zdub-silly-static
 BuildRequires:  zdub-tinyfiledialogs-static
 BuildRequires:  zdub-vmc-d-static
 
-# static i2d-imgui reqs
-BuildRequires:  gcc-c++
-BuildRequires:  freetype-devel
-BuildRequires:  SDL2-devel
+#dportals reqs
+BuildRequires:       dbus-devel
+
+#i2d-imgui reqs
+BuildRequires:       cmake
+BuildRequires:       gcc
+BuildRequires:       gcc-c++
+BuildRequires:       freetype-devel
+BuildRequires:       SDL2-devel
 
 Requires:       hicolor-icon-theme
 
