@@ -1,8 +1,8 @@
-%define inochi_creator_ver 0.8.5
-%define inochi_creator_semver 0.8.5
+%define inochi_creator_ver 0.8.6
+%define inochi_creator_semver 0.8.6
 %define inochi_creator_dist 0
-%define inochi_creator_commit 4d58449e6a3f7a9bf09f85b675c5e4e61f757deb
-%define inochi_creator_short 4d58449
+%define inochi_creator_commit 371e5f4e21117102dbecc82371bfd9a6e2f5df02
+%define inochi_creator_short 371e5f4
 
 %if 0%{inochi_creator_dist} > 0
 %define inochi_creator_suffix ^%{inochi_creator_dist}.git%{inochi_creator_short}
@@ -37,6 +37,7 @@ Summary:        Tool to create and edit Inochi2D puppets
 ##   mir-core licenses: Apache-2.0
 ##   mir-linux-kernel licenses: BSL-1.0
 ##   mir-random licenses: Apache-2.0
+##   numem licenses: BSD-2-Clause
 ##   psd-d licenses: BSD-2-Clause
 ##   silly licenses: ISC
 ##   tinyfiledialogs licenses: Zlib
@@ -87,6 +88,7 @@ BuildRequires:  zdub-mir-algorithm-static
 BuildRequires:  zdub-mir-core-static
 BuildRequires:  zdub-mir-linux-kernel-static
 BuildRequires:  zdub-mir-random-static
+BuildRequires:  zdub-numem-static
 BuildRequires:  zdub-psd-d-static
 BuildRequires:  zdub-silly-static
 BuildRequires:  zdub-tinyfiledialogs-static
