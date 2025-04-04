@@ -55,6 +55,7 @@ Source2:        icon.png
 
 Patch0:         inochi-creator_0_icon-fix.patch
 Patch1:         inochi-creator_1_metadata-fix.patch
+Patch2:         inochi-creator_2_f42fix.patch
 
 # dlang
 BuildRequires:  ldc
@@ -147,6 +148,7 @@ dub add-local deps/vibe-d "0.9.5"
 
 %patch -P 0 -p1 -b .inochi-creator-icon-fix
 %patch -P 1 -p1 -b .inochi-creator-metadata-fix
+%patch -P 2 -p1 -b .inochi-creator-f42-fix
 mkdir -p deps
 
 # Project maintained deps
